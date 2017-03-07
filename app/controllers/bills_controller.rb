@@ -106,12 +106,14 @@ class BillsController < ApplicationController
 
                                    if ((bill.anthony_paid - single_contribution) >=  remaining_amount)
 
-                                     @amarpaytoanthony = @amarpaytoanthony + remaining_amount     
+                                     @amarpaytoanthony = @amarpaytoanthony + remaining_amount  
+
                                    else
-                                    if  bill.anthony_paid < single_contribution
+                                    if  bill.anthony_paid > single_contribution
                                         @amarpaytoanthony = @amarpaytoanthony + (bill.anthony_paid - single_contribution)
                                         remaining_amount = remaining_amount - (bill.anthony_paid - single_contribution)
                                      end
+
                                    end
                             
                                    if bill.akbar_paid > single_contribution
