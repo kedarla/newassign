@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @food_event.name %>
+</p>
+
+<p>
+  <strong>Amar present:</strong>
+  <%= @food_event.amar_present %>
+</p>
+
+<p>
+  <strong>Akbar present:</strong>
+  <%= @food_event.akbar_present %>
+</p>
+
+<p>
+  <strong>Anthony present:</strong>
+  <%= @food_event.anthony_present %>
+</p>
+
+<%= link_to 'Edit', edit_food_event_path(@food_event) %> |
+<%= link_to 'Back', food_events_path %>

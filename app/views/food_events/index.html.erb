@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Food Events</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Amar present</th>
+      <th>Akbar present</th>
+      <th>Anthony present</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @food_events.each do |food_event| %>
+      <tr>
+        <td><%= food_event.name %></td>
+        <td><%= food_event.amar_present %></td>
+        <td><%= food_event.akbar_present %></td>
+        <td><%= food_event.anthony_present %></td>
+        <td><%= link_to 'Show', food_event %></td>
+        <td><%= link_to 'Edit', edit_food_event_path(food_event) %></td>
+        <td><%= link_to 'Destroy', food_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%if food_event.bill.blank?%>
+          <td><%= link_to 'Add Bill', "/add_bill/#{food_event.id}"  %></td>
+          <%else%>
+          <td><%= link_to 'Edit Bill', "/edit_bill/#{food_event.id}"  %></td>
+          <%end%>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Food event', new_food_event_path %>
+<br>
+ <%= link_to 'Show Payment Remaining', "/remaining_payment" ,:remote=>true%> 
+
+ <div id="remaining_payment">
+
+ </div>

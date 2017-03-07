@@ -1,0 +1,14 @@
+ development:
+  adapter: postgresql
+  encoding: unicode
+  database: achanto
+  pool: 5
+  username: postgres
+  password: postgres
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: achanto
+  pool: 5
+  username: postgres
+  password: postgres

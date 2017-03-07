@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  amar_present: false
+  akbar_present: false
+  anthony_present: false
+
+two:
+  name: MyString
+  amar_present: false
+  akbar_present: false
+  anthony_present: false
