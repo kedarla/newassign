@@ -108,8 +108,10 @@ class BillsController < ApplicationController
 
                                      @amarpaytoanthony = @amarpaytoanthony + remaining_amount     
                                    else
-                                     @amarpaytoanthony = @amarpaytoanthony + (bill.anthony_paid - single_contribution)
-                                     remaining_amount = remaining_amount - (bill.anthony_paid - single_contribution)
+                                    if  bill.anthony_paid < single_contribution
+                                        @amarpaytoanthony = @amarpaytoanthony + (bill.anthony_paid - single_contribution)
+                                        remaining_amount = remaining_amount - (bill.anthony_paid - single_contribution)
+                                     end
                                    end
                             
                                    if bill.akbar_paid > single_contribution
@@ -138,9 +140,10 @@ class BillsController < ApplicationController
              
                                  @akbarpaytoamar = @akbarpaytoamar + remaining_amount 
                               else   
-                                 @akbarpaytoamar = @akbarpaytoamar + (bill.amar_paid - single_contribution) 
-                                 remaining_amount = remaining_amount - (bill.amar_paid - single_contribution)
-             
+                                 if bill.amar_paid > single_contribution
+                                    @akbarpaytoamar = @akbarpaytoamar + (bill.amar_paid - single_contribution) 
+                                   remaining_amount = remaining_amount - (bill.amar_paid - single_contribution)
+                                  end
                               end
 
                               if bill.anthony_paid > single_contribution
@@ -167,8 +170,10 @@ class BillsController < ApplicationController
                             if ((bill.amar_paid - single_contribution) >=  remaining_amount)
                               @anthonypaytoamar = @anthonypaytoamar +  remaining_amount
                             else
-                               @anthonypaytoamar = @anthonypaytoamar +   (bill.amar_paid - single_contribution)
-                               remaining_amount = remaining_amount - (bill.amar_paid - single_contribution)
+                              if bill.amar_paid > single_contribution
+                                @anthonypaytoamar = @anthonypaytoamar +   (bill.amar_paid - single_contribution)
+                                remaining_amount = remaining_amount - (bill.amar_paid - single_contribution)
+                              end 
                             end
                             
                             if bill.akbar_paid > single_contribution
