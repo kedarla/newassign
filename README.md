@@ -15,7 +15,7 @@
    - cap production copy:deploy
 
   1. Add following to your database.yml file locally
-     ```  
+     ``` 
      production:
       adapter: postgresql
       encoding: unicode
@@ -30,14 +30,14 @@
 
  
   2. second create a secret key with rake task from root of application run the following command 
-     `RAILS_ENV=production rake secret`  
+     `RAILS_ENV=production rake secret` 
       then copy this key in the `.env` file in the root of iris folder(first time you have to create it manually) as
-      follows      
+      follows
 
      `SECRET_KEY_BASE=51651651651651651aaxasxa16sx51a651sx6sa51x6as51x`
 
       Then run the following command
-      `cap production config:set SECRET_KEY_BASE=51651651651651651aaxasxa16sx51a651sx6sa51x6as51x`  
+      `cap production config:set SECRET_KEY_BASE=51651651651651651aaxasxa16sx51a651sx6sa51x6as51x` 
 
       which will create a .env file on remote machine and set its value.
 
@@ -49,17 +49,16 @@
   3. Then run the following command
     `bundle exec cap production copy:deploy`
 
-     which will copy the code to server with specified path that is deploy_to variable defined in deploy.rb. Then it will run the tasks migration,compile the assets,and start puma web server  
+     which will copy the code to server with specified path that is deploy_to variable defined in deploy.rb. Then it will run the tasks migration,compile the assets,and start puma web server 
 
 ### Deploy with git
 
     When deployed with git the above 2 steps are same but in 3rd step instead of copy:deploy it is `cap production deploy`.
-
     which will pull the code from git repository instead of copying from machine.
 
 ### Deploy with nginx
 
-    I just included the puma nginx configuration file through capistrano.Therefore we can run the following command `cap production puma:nginx_config`. By this command the puma nginx file is copied to remote machine's /etc/nginx/sites-availabe directory.  
+    I just included the puma nginx configuration file through capistrano.Therefore we can run the following command `cap production puma:nginx_config`. By this command the puma nginx file is copied to remote machine's /etc/nginx/sites-availabe directory.
 
     The nginx file which is copied to server is from config/deploy/templates/nginx_conf.erb. just keep in mind if you are using a centos then after nginx installation it will not create sites-enabled and sites-available folder. Please check this site. [nginx missing sites available](https://stackoverflow.com/questions/17413526/nginx-missing-sites-available-directory)
     
