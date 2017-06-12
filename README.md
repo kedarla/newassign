@@ -25,6 +25,7 @@
       password: postgres
       host: irisdev.corp.ooma.com
       port: 5432
+
      ```
      
 
@@ -49,12 +50,12 @@
   3. Then run the following command
      `bundle exec cap production copy:deploy`
 
-   which will copy the code to server with specified path that is deploy_to variable defined in deploy.rb. Then it will run
-   the tasks migration,compile the assets,and start puma web server. 
+   Which will copy the code to server with specified path that is deploy_to variable defined in deploy.rb. 
+   Then it will run the tasks migration,compile the assets,and start puma web server. 
 
 ## Deploy with gitswarm
     When deployed with gitswarm the above 2 steps are same. 
-    But in 3rd step instead of copy:deploy it is `cap production deploy`.
+    But in 3rd step instead of copy:deploy it is `cap production deploy` .
     Which will pull the code from git repository instead of copying from machine.
 
 ## Deploy with nginx
