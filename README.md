@@ -8,6 +8,7 @@
    I already run the command `cap install` from root of application so there is no need to run this command again.it creates files and folders. Please have a look at [Capistrano gem](https://github.com/capistrano/capistrano/). in the config/deploy.rb you can see variables are set like deploy directory path,user name which is used to login to the remote machine etc. i already installed my public ssh key on remote machine, therefore it will not ask me the password while deploying.
 
 ## Deployment Steps
+
    - bundle exec cap production setup
    - cap production config:set
    - cap production config:set SECRET_KEY_BASE=51651651651651651aaxasxa16sx51a651sx6sa51x6as51x
@@ -49,9 +50,13 @@
     `bundle exec cap production copy:deploy`
 
      which will copy the code to server with specified path that is deploy_to variable defined in deploy.rb. Then it will run the tasks migration,compile the assets,and start puma web server  
+
 ### Deploy with git
+
     When deployed with git the above 2 steps are same but in 3rd step instead of copy:deploy it is `cap production deploy`. which will pull the code from git repository instead of copying from machine.
+
 ### Deploy with nginx
+
     I just included the puma nginx configuration file through capistrano.Therefore we can run the following command `cap production puma:nginx_config`. By this command the puma nginx file is copied to remote machine's /etc/nginx/sites-availabe directory.  
 
     The nginx file which is copied to server is from config/deploy/templates/nginx_conf.erb. just keep in mind if you are using a centos then after nginx installation it will not create sites-enabled and sites-available folder. Please check this site. [nginx missing sites available](https://stackoverflow.com/questions/17413526/nginx-missing-sites-available-directory)
@@ -62,7 +67,9 @@
      The Puma configuration file can be found in a shared directory on the server(/export/iris/apps_test/superapp/shared).
 
     Mostly there is no much change in an nginx configuration file so this is just for reference.
+
  ## steps for nginx installation
+ 
     1. sudo yum install epel-release
     2. sudo yum install nginx
     3. sudo systemctl start nginx
