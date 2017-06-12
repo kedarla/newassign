@@ -53,7 +53,8 @@
 
 ## Deploy with git
 
-    When deployed with git the above 2 steps are same. But in 3rd step instead of copy:deploy it is `cap production deploy`.
+    When deployed with git the above 2 steps are same. 
+    But in 3rd step instead of copy:deploy it is `cap production deploy`.
     Which will pull the code from git repository instead of copying from machine.
 
 ## Deploy with nginx
