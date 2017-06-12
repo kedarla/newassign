@@ -47,9 +47,11 @@
       and on deployment it will automatically symlinked to appropriate files in config folder.
 
   3. Then run the following command
-    `bundle exec cap production copy:deploy`
+     `bundle exec cap production copy:deploy`
 
-     which will copy the code to server with specified path that is deploy_to variable defined in deploy.rb. Then it will run the tasks migration,compile the assets,and start puma web server. 
+     which will copy the code to server with specified path that is deploy_to variable defined in deploy.rb. Then it will run
+     the tasks migration,compile the assets,and start puma web server. 
+
 
 ## Deploy with git
 
