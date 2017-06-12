@@ -49,14 +49,14 @@
   3. Then run the following command
     `bundle exec cap production copy:deploy`
 
-     which will copy the code to server with specified path that is deploy_to variable defined in deploy.rb. Then it will run the tasks migration,compile the assets,and start puma web server 
+     which will copy the code to server with specified path that is deploy_to variable defined in deploy.rb. Then it will run the tasks migration,compile the assets,and start puma web server. 
 
-### Deploy with git
+## Deploy with git
 
     When deployed with git the above 2 steps are same but in 3rd step instead of copy:deploy it is `cap production deploy`.
     which will pull the code from git repository instead of copying from machine.
 
-### Deploy with nginx
+## Deploy with nginx
 
     I just included the puma nginx configuration file through capistrano.Therefore we can run the following command `cap production puma:nginx_config`. By this command the puma nginx file is copied to remote machine's /etc/nginx/sites-availabe directory.
 
@@ -128,8 +128,10 @@
 
 
     if you get a permission denied error for accessing a log file try following command and restart a nginx  
-    `setenforce permissive`
-### Resque configuration
+    `setenforce permissive`.
+
+## Resque configuration
+
 Following command to start resque background processing
 ```
 rails s -e production ( which will load scheduled job from configuration file)
@@ -137,7 +139,7 @@ RAILS_ENV=production  QUEUE=iris_data rake resque:work (which will actually exec
 RAILS_ENV=production rake resque:scheduler (which will just schedule a job in schedular dynamically. if the name is same then just check last enqued at time stamp it will be changed in /resque/schedule)
 ```
 
-### 
+##Reference Commands 
 just pasting here all the commands we can use for reference . you can see it through cap -T
 ```
 cap bundler:clean                  # Remove unused gems intalled by bundler
