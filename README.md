@@ -53,13 +53,13 @@
      the tasks migration,compile the assets,and start puma web server. 
 
 
-  ## Deploy with git
+## Deploy with git
 
     When deployed with git the above 2 steps are same. 
     But in 3rd step instead of copy:deploy it is `cap production deploy`.
     Which will pull the code from git repository instead of copying from machine.
 
-  ## Deploy with nginx
+## Deploy with nginx
 
     I just included the puma nginx configuration file through capistrano.
     Therefore we can run the following command `cap production puma:nginx_config`. 
