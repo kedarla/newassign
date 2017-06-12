@@ -61,14 +61,23 @@
 
 ## Deploy with nginx
 
-    I just included the puma nginx configuration file through capistrano.Therefore we can run the following command `cap production puma:nginx_config`. By this command the puma nginx file is copied to remote machine's /etc/nginx/sites-availabe directory.
+    I just included the puma nginx configuration file through capistrano.
+    Therefore we can run the following command `cap production puma:nginx_config`. 
+    By this command the puma nginx file is copied to remote machine's /etc/nginx/sites-availabe directory.
 
-    The nginx file which is copied to server is from config/deploy/templates/nginx_conf.erb. just keep in mind if you are using a centos then after nginx installation it will not create sites-enabled and sites-available folder. Please check this site. [nginx missing sites available](https://stackoverflow.com/questions/17413526/nginx-missing-sites-available-directory)
+    The nginx file which is copied to server is from config/deploy/templates/nginx_conf.erb. 
+    If you are using a centos then after nginx installation it will not create sites-enabled and sites
+    -available folder. 
+    Please check this site. [nginx missing sites available](https://stackoverflow.com/questions/17413526/nginx-missing-sites-available-directory)
     
-    in the config/depoy/templates/nginx_conf.erb file put all the configuration which is requied to run the puma app with socket which nginx can use for web access. I copied there right now the configuration of iris app which is get deployed on graphite.corp.ooma.com machine. after we run the command `cap production puma:nginx_config` 
-    the file copied into a /etc/nginx/sites-availabe folder and make a symlink to sites-enabled folder. Then run the command `cap production nginx:restart` which will restart nginx on server.
+    In the config/depoy/templates/nginx_conf.erb file put all the configuration which is requied to run the puma app.
+    With socket which nginx can use for web access. 
+    I copied there right now the configuration of iris app which is get deployed on graphite.corp.ooma.com machine. 
+    After we run the command `cap production puma:nginx_config` 
+    The file get copied into a /etc/nginx/sites-availabe folder and make a symlink to sites-enabled folder.
+    Then run the command `cap production nginx:restart` which will restart nginx on server.
 
-     The Puma configuration file can be found in a shared directory on the server(/export/iris/apps_test/superapp/shared).
+    The Puma configuration file can be found in a shared directory on the server(/export/iris/apps_test/superapp/shared).
 
     Mostly there is no much change in an nginx configuration file so this is just for reference.
 
@@ -91,8 +100,8 @@
       check http://IPADDRESS 
 
       copy this into the /etc/nginx/nginx.conf
+
       ```
-      
        upstream puma {
         server unix:///home/deploy/apps/appname/shared/tmp/sockets/appname-puma.sock;
       }
@@ -138,8 +147,11 @@
 Following command to start resque background processing
 ```
 rails s -e production ( which will load scheduled job from configuration file)
+
 RAILS_ENV=production  QUEUE=iris_data rake resque:work (which will actually executes worker by only starting a schedular dosent start work processing.)
+
 RAILS_ENV=production rake resque:scheduler (which will just schedule a job in schedular dynamically. if the name is same then just check last enqued at time stamp it will be changed in /resque/schedule)
+
 ```
 
 ##Reference Commands 
