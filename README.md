@@ -1,5 +1,5 @@
 # Capistrano deployment
-  Before start reading this documentation please have a look at following links as i really use all the steps written there and installed all the basic softwares like rvm,nginx etc.
+  Before start reading this documentation please have a look at following links as I really use all the steps written there and installed all the basic softwares like rvm, Nginx etc.
    [Capistrano puma nginx](https://www.digitalocean.com/community/tutorials/deploying-a-rails-app-on-ubuntu-14-04-with-capistrano-nginx-and-puma).
    [Capistrano gem](https://github.com/capistrano/capistrano/).
    [nginx missing sites available](https://stackoverflow.com/questions/17413526/nginx-missing-sites-available-directory).
@@ -16,30 +16,28 @@
      - `RAILS_ENV=production rake secret` 
        The above command will generate a secret key which we will use in the next command.
      - `cap production config:set SECRET_KEY_BASE=51651651651651651aaxasxa16sx51a651sx6sa51x6as51x` 
-       With this command we actually create a .env file and put the SECRET_KEY_BASE variable in it 
-       and copied this file on remote machine.
+       With this command, we actually create a .env file and put the SECRET_KEY_BASE variable in it and copied this file on the remote machine.
      - Then create a database.yml file with production environment variables which will be used 
-       to copy on remote machine.
+       to copy on the remote machine.
        Add following to your database.yml file locally
-	     ``` 
-	     production:
-	      adapter: postgresql
-	      encoding: unicode
-	      database: iris_development
-	      pool: 5
-	      username: postgres
-	      password: postgres
-	      host: irisdev.corp.ooma.com
-	      port: 5432
+         ``` 
+         production:
+          adapter: postgresql
+          encoding: unicode
+          database: iris_development
+          pool: 5
+          username: postgres
+          password: postgres
+          host: irisdev.corp.ooma.com
+          port: 5432
 
-	     ``` 
+         ``` 
       Then run following command from root of iris app 
       `bundle exec cap production setup`.
-      which will a copy of secret_key.yml and database.yml file to shared directory on remote server.
-      and on deployment it will automatically symlinked to appropriate files in config folder.
-    - Then run `cap production deploy` which will run all the deployment task on remote machine.
-      like cloning the application,run the migration run the asset compilation etc. and start a 
-      application in production mode. 
+      which will a copy of secret_key.yml and database.yml file to a shared directory on the remote server.
+      and on deployment, it will automatically be symlinked to appropriate files in config folder.
+    - Then run `cap production deploy` which will run all the deployment task on the remote machine.
+      like cloning the application, run the migration run the asset compilation etc. and start an application in production mode. 
 
 ##  Details of deployment.
 Please first go through all the readme files of following gems.
@@ -50,11 +48,11 @@ Please first go through all the readme files of following gems.
 [capistrano3-nginx](https://github.com/platanus/capistrano3-nginx),
 [capistrano-resque](https://github.com/sshingler/capistrano-resque). 
 
-### Capistrano with puma
-    I have set all the puma default configuration like puma workers,puma socket file path etc in
-    config/deploy.rb.It can be changed from there.As workers count depend on cpu cores count.
+### Capistrano with Puma
+    I have set all the puma default configuration like puma workers, puma socket file path etc in
+    config/deploy.rb.It can be changed from there.As workers count depends on CPU cores count.
 
-    ```	
+    ```    
     cap puma:config                    # Setup Puma config file
     cap puma:halt                      # halt puma
     cap puma:nginx_config              # Setup nginx configuration
@@ -70,16 +68,16 @@ Please first go through all the readme files of following gems.
 ### Nginx with puma
     - We can start and restart nginx from local machine.
      ```
-	cap nginx:configtest               # Configtest nginx service
-	cap nginx:gzip_static              # Compress JS and CSS with gzip
-	cap nginx:reload                   # Reload nginx service
-	cap nginx:restart                  # Restart nginx service
-	cap nginx:site:add                 # Creates the site configuration and upload it to the available folder
-	cap nginx:site:disable             # Disables the site removing the symbolic link located in the enabled folder
-	cap nginx:site:enable              # Enables the site creating a symbolic link into the enabled folder
-	cap nginx:site:remove              # Removes the site by removing the configuration file from the available folder
-	cap nginx:start                    # Start nginx service
-	cap nginx:stop                     # Stop nginx service
+    cap nginx:configtest               # Configtest nginx service
+    cap nginx:gzip_static              # Compress JS and CSS with gzip
+    cap nginx:reload                   # Reload nginx service
+    cap nginx:restart                  # Restart nginx service
+    cap nginx:site:add                 # Creates the site configuration and upload it to the available folder
+    cap nginx:site:disable             # Disables the site removing the symbolic link located in the enabled folder
+    cap nginx:site:enable              # Enables the site creating a symbolic link into the enabled folder
+    cap nginx:site:remove              # Removes the site by removing the configuration file from the available folder
+    cap nginx:start                    # Start nginx service
+    cap nginx:stop                     # Stop nginx service
 
      ```
 #How to use Resque 
@@ -90,11 +88,10 @@ Please first go through all the readme files of following gems.
   Resque is a redis based background job processor. You can see the resque default configuration in 
   config/initializer/resque.rb  as i m using 2 database of redis so no conflict with the database used by iriscollector.
   
-  Im using resque scheduler to run recurringly jobs. For that i am using a cron style yml file to declare the jobs
-  Have a look at config/resque_schedule.yml. So when rails server started it will load this task into resque. You
-  can see this in http://localhost:3000/resque/schedule.
+  I'm using resque scheduler to run recurring jobs. For that, i am using a cron style yml file to declare the jobs
+  Have a look at config/resque_schedule.yml. So when rails server started it will load this task into resque. You can see this in http://localhost:3000/resque/schedule.
   
-  Then we have to start a schedular to load this job in a queue.
+  Then we have to start a scheduler to load this job in a queue.
   `cap production  resque:scheduler:start` 
 
   Then we have to start workers to run this queued jobs.
@@ -103,8 +100,8 @@ Please first go through all the readme files of following gems.
   The queue and workers count I defined in config/deploy/production.rb  
 
    
-  For using this i have transfered all the rake task into a resque workers.you can check in app/workers folder.
-  and all these workers are get called via scheduler with the help of config/resque_schedule.yml.
+  For using this I have transferred all the rake task into a resque worker.you can check-in app/workers folder.
+  and all these workers are getting called via scheduler with the help of config/resque_schedule.yml.
         
 
 
