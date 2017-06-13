@@ -13,9 +13,9 @@
   http://localhost:3000/.
 
   2. Now we can see the deployment steps 
-     - RAILS_ENV=production rake secret 
+     - `RAILS_ENV=production rake secret` 
        The above command will generate a secret key which we will use in the next command.
-     - cap production config:set SECRET_KEY_BASE=51651651651651651aaxasxa16sx51a651sx6sa51x6as51x 
+     - `cap production config:set SECRET_KEY_BASE=51651651651651651aaxasxa16sx51a651sx6sa51x6as51x` 
        With this command we actually create a .env file and put the SECRET_KEY_BASE variable in it 
        and copied this file on remote machine.
      - Then create a database.yml file with production environment variables which will be used 
