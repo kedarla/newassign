@@ -43,13 +43,69 @@
 
 ##  Details of deployment.
 Please first go through all the readme files of following gems.
-[capistrano rvm](https://github.com/capistrano/rvm). 
-[capistrano puma](https://github.com/seuros/capistrano-puma).
-[capistrano database.yml](https://github.com/potsbo/capistrano-database-yml).
-[capistrano-dotenv-tasks](https://github.com/glyph-fr/capistrano-dotenv-tasks).
-[capistrano3-nginx](https://github.com/platanus/capistrano3-nginx).
+[capistrano rvm](https://github.com/capistrano/rvm),
+[capistrano puma](https://github.com/seuros/capistrano-puma),
+[capistrano database.yml](https://github.com/potsbo/capistrano-database-yml),
+[capistrano-dotenv-tasks](https://github.com/glyph-fr/capistrano-dotenv-tasks),
+[capistrano3-nginx](https://github.com/platanus/capistrano3-nginx),
 [capistrano-resque](https://github.com/sshingler/capistrano-resque). 
 
+### Capistrano with puma
+    I have set all the puma default configuration like puma workers,puma socket file path etc in
+    config/deploy.rb.It can be changed from there.As workers count depend on cpu cores count.
+
+    ```	
+    cap puma:config                    # Setup Puma config file
+    cap puma:halt                      # halt puma
+    cap puma:nginx_config              # Setup nginx configuration
+    cap puma:phased-restart            # phased-restart puma
+    cap puma:restart                   # restart puma
+    cap puma:start                     # Start puma
+    cap puma:status                    # status puma
+    cap puma:stop                      # stop puma
+    ```
+    When we run `cap puma:config` it will create and upload a puma configuration file on remote machine and when puma gets
+    started  at the end of deployment task it will use this file to get configuration and start a server.
+
+### Nginx with puma
+    - We can start and restart nginx from local machine.
+     ```
+	cap nginx:configtest               # Configtest nginx service
+	cap nginx:gzip_static              # Compress JS and CSS with gzip
+	cap nginx:reload                   # Reload nginx service
+	cap nginx:restart                  # Restart nginx service
+	cap nginx:site:add                 # Creates the site configuration and upload it to the available folder
+	cap nginx:site:disable             # Disables the site removing the symbolic link located in the enabled folder
+	cap nginx:site:enable              # Enables the site creating a symbolic link into the enabled folder
+	cap nginx:site:remove              # Removes the site by removing the configuration file from the available folder
+	cap nginx:start                    # Start nginx service
+	cap nginx:stop                     # Stop nginx service
+
+     ```
+#How to use Resque 
+  Please go through a readme file of resque gem.
+  [resque](https://github.com/resque/resque)
+  [resque scheduler](https://github.com/resque/resque-scheduler)
+  
+  Resque is a redis based background job processor. You can see the resque default configuration in 
+  config/initializer/resque.rb  as i m using 2 database of redis so no conflict with the database used by iriscollector.
+  
+  Im using resque scheduler to run recurringly jobs. For that i am using a cron style yml file to declare the jobs
+  Have a look at config/resque_schedule.yml. So when rails server started it will load this task into resque. You
+  can see this in http://localhost:3000/resque/schedule.
+  
+  Then we have to start a schedular to load this job in a queue.
+  `cap production  resque:scheduler:start` 
+
+  Then we have to start workers to run this queued jobs.
+  `cap production  resque:start`    
+  
+  The queue and workers count I defined in config/deploy/production.rb  
+
+   
+  For using this i have transfered all the rake task into a resque workers.you can check in app/workers folder.
+  and all these workers are get called via scheduler with the help of config/resque_schedule.yml.
+        
 
 
-
+ 
