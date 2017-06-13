@@ -80,7 +80,7 @@ Please first go through all the readme files of following gems.
     cap nginx:stop                     # Stop nginx service
 
      ```
-#How to use Resque 
+# How to use Resque 
   Please go through a readme file of resque gem.
   [resque](https://github.com/resque/resque)
   [resque scheduler](https://github.com/resque/resque-scheduler)
