@@ -1,5 +1,5 @@
 # Capistrano deployment
-  Before start reading this documentation please have a look at following links as I really use all the steps written there and installed all the basic softwares like rvm, Nginx etc.
+  Before start reading this documentation, please have a look at following links as I really use all the steps written there and installed all the basic softwares like rvm, Nginx etc.
    [Capistrano puma nginx](https://www.digitalocean.com/community/tutorials/deploying-a-rails-app-on-ubuntu-14-04-with-capistrano-nginx-and-puma).
    [Capistrano gem](https://github.com/capistrano/capistrano/).
    [nginx missing sites available](https://stackoverflow.com/questions/17413526/nginx-missing-sites-available-directory).
