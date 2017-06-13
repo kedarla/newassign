@@ -11,6 +11,7 @@
   `rvm use 2.3.1` and `rvm gemset use iris` and `bundle install` and `rails s`
   This will run the application on local machine.
   http://localhost:3000/.
+
   2. Now we can see the deployment steps 
      - RAILS_ENV=production rake secret 
        The above command will generate a secret key which we will use in the next command.
@@ -41,13 +42,13 @@
       application in production mode. 
 
 ##  Details of deployment.
-     Please first go through all the readme files of following gems.
-     [capistrano rvm](https://github.com/capistrano/rvm) 
-     [capistrano puma](https://github.com/seuros/capistrano-puma)
-     [capistrano database.yml](https://github.com/potsbo/capistrano-database-yml)
-     [capistrano-dotenv-tasks](https://github.com/glyph-fr/capistrano-dotenv-tasks)
-     [capistrano3-nginx](https://github.com/platanus/capistrano3-nginx)
-     [capistrano-resque](https://github.com/sshingler/capistrano-resque). 
+Please first go through all the readme files of following gems.
+[capistrano rvm](https://github.com/capistrano/rvm). 
+[capistrano puma](https://github.com/seuros/capistrano-puma).
+[capistrano database.yml](https://github.com/potsbo/capistrano-database-yml).
+[capistrano-dotenv-tasks](https://github.com/glyph-fr/capistrano-dotenv-tasks).
+[capistrano3-nginx](https://github.com/platanus/capistrano3-nginx).
+[capistrano-resque](https://github.com/sshingler/capistrano-resque). 
 
 
 
