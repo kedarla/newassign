@@ -39,7 +39,8 @@
     - Then run `cap production deploy` which will run all the deployment task on remote machine.
       like cloning the application,run the migration run the asset compilation etc. and start a 
       application in production mode. 
-###  Details of deployment.
+
+##  Details of deployment.
      Please first go through all the readme files of following gems.
      [capistrano rvm](https://github.com/capistrano/rvm) 
      [capistrano puma](https://github.com/seuros/capistrano-puma)
